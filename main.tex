@@ -1,0 +1,521 @@
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\kk}{k}
+\newcommand{\CI}{\operatorname{CI}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Hilb}{\operatorname{Hilb}}
+\newcommand{\ch}{\operatorname{char}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\DeclareMathOperator{\rank}{rank}
+\title[A strong Lefschetz family]{A strong Lefschetz family among equigenerated monomial almost complete intersections}
+\author{Ke-kuk Chow}
+\date{7 November 2026}
+\subjclass[2020]{Primary 13E10; Secondary 13C40, 13F55}
+\keywords{Strong Lefschetz property, monomial almost complete intersection, graded Jordan decomposition, connecting map}
+\hypersetup{pdftitle={A strong Lefschetz family among equigenerated monomial almost complete intersections},pdfauthor={Ke-kuk Chow}}
+
+\begin{document}
+\begin{abstract}
+Let $k$ be a field of characteristic zero and let $a\ge4$. We prove that
+the algebra
+\[
+ k[x,y,z]/(x^a,y^a,z^a,x^{a-2}yz)
+\]
+has the strong Lefschetz property.
+This establishes the second positive infinite family in the
+Gasanova--Lundqvist--Nicklasson conjecture on equigenerated monomial almost
+complete intersections of codimension three. An actual graded module
+extension reduces all possible rank conflicts to two multiplication maps.
+Explicit primitive vectors show that both connecting maps are nonzero.
+We also determine that the sums of the endpoints of the graded Jordan
+intervals take two consecutive values. The resulting almost-centered
+structure, together with the standard tensor mechanism, proves the same
+property after adjoining arbitrary truncated polynomial variables.
+In particular, it proves the corresponding expectation in any number of
+variables. The exclusion direction of the full classification conjecture
+is outside the scope of the result.
+\end{abstract}
+\maketitle
+
+\section{Introduction and precise scope}
+
+For a standard graded Artinian algebra $B$ over a field $k$, a linear form
+$L\in B_1$ is a \emph{strong Lefschetz element} if
+\[
+ L^{j-i}:B_i\longrightarrow B_j
+\]
+has maximal rank for every $0\le i<j$. The algebra has the strong
+Lefschetz property, abbreviated SLP, if such an element exists.
+The SLP of monomial complete intersections is classical
+\cite{Stanley1980}. A natural next class consists of monomial almost
+complete intersections, obtained by adding one monomial generator to the
+ideal of pure powers.
+
+Gasanova, Lundqvist, and Nicklasson \cite{GLN2022} developed a basis
+splitting method for Lefschetz properties. In their Theorem~5 they proved
+that
+\[
+ k[x_1,\ldots,x_n]/(x_1^a,\ldots,x_n^a,x_1^{a-1}x_2)
+\]
+has the SLP in characteristic zero. Immediately before Conjecture~1 in
+Section~5.1 of version~4 of that preprint, they state the expectation that replacing
+the additional generator by $x_1^{a-2}x_2x_3$, for $a\ge4$, also gives the
+SLP. In codimension three this is the second positive infinite family
+listed in that conjecture.
+
+\begin{theorem}\label{thm:main}
+Let $k$ be a field of characteristic zero and let $a\ge4$. In
+\[
+ A_a=k[x,y,z]/(x^a,y^a,z^a,x^{a-2}yz),
+\]
+the element $L=x+y+z$ is strong Lefschetz. Moreover, every graded Jordan
+interval for multiplication by $L$ has endpoint sum either $3a-5$ or
+$3a-4$.
+\end{theorem}
+
+\begin{corollary}\label{cor:extra}
+Let $a\ge4$, $n\ge3$, and $d_4,\ldots,d_n\ge1$. Over a field of
+characteristic zero, the sum of the variables is a strong Lefschetz
+element of
+\[
+ \frac{k[x_1,\ldots,x_n]}
+ {(x_1^a,x_2^a,x_3^a,x_4^{d_4},\ldots,x_n^{d_n},x_1^{a-2}x_2x_3)}.
+\]
+In particular, $k[x_1,\ldots,x_n]/(x_i^a,x_1^{a-2}x_2x_3)$ has the SLP.
+\end{corollary}
+
+Theorem~\ref{thm:main} establishes one specified positive family; it does
+not establish the assertion that the families listed in
+\cite[Conjecture~1]{GLN2022} exhaust all equigenerated examples with the
+SLP. No assertion about positive characteristic is made here.
+
+The general tools used in the proof are established ones: graded Jordan
+decomposition, the lowering operator for monomial complete intersections,
+and the connecting map of a module extension. The specific step is the
+uniform nonvanishing calculation for two connecting maps. This calculation
+is needed because splitting the Hilbert function does not split the
+operator. The tensor argument in Corollary~\ref{cor:extra} is the usual
+almost-centered mechanism, associated with Lindsey's work and recalled in
+\cite[Theorem~2.5]{CJK2026}; we include a proof for the particular endpoint
+condition used here.
+
+Recent classification results in \cite{CJK2026} cover additional monomials
+supported on two variables, or monomial almost complete intersections with
+symmetric Hilbert series. The generator in Theorem~\ref{thm:main} has
+support three, and its Hilbert series is not symmetric; see
+Remark~\ref{rem:nonsymmetric}. Thus those hypotheses do not directly
+give the result proved here.
+
+\section{Graded strings and complete intersections}
+
+Let $V$ be a finite graded vector space and let $U$ have degree one.
+Regarding $V$ as a graded $k[u]$-module gives its graded Jordan
+decomposition. A cyclic summand with a generator in degree $b$ and last
+nonzero iterate in degree $e$ will be denoted by $[b,e]$. The integer
+$b+e$ is its \emph{endpoint sum}. Intervals are counted with multiplicity.
+
+\begin{lemma}\label{lem:nested}
+All powers of $U$ have maximal rank if and only if its graded Jordan
+intervals are totally ordered by containment. A nested interval family is
+uniquely determined by its Hilbert function. In particular, a family whose
+endpoint sums belong to $\{E,E+1\}$ is nested.
+\end{lemma}
+
+\begin{proof}
+On one interval, a map from degree $i$ to degree $j>i$ has a kernel
+contribution precisely when the interval contains $i$ but not $j$, and a
+cokernel contribution precisely when it contains $j$ but not $i$.
+Both kinds cannot occur in a nested family. Conversely, incomparable
+intervals $[b,e]$ and $[c,f]$, with $b<c$ and $e<f$, give both kinds for
+the map from degree $b$ to degree $f$. This proves the rank criterion.
+
+If $h_j=\dim V_j$, the $r$th interval, ordered from the outside to the
+inside, is the set $\{j:h_j\ge r\}$. This proves uniqueness. Finally,
+if $b<c$ and both endpoint sums lie in $\{E,E+1\}$, then
+\[
+ e\ge E-b\ge E+1-c\ge f.
+\]
+Thus the intervals are comparable; intervals with equal left endpoint
+are comparable as well.
+\end{proof}
+
+For positive integers $r_1,\ldots,r_s$, write
+\[
+ \CI(r_1,\ldots,r_s)
+ =k[z_1,\ldots,z_s]/(z_1^{r_1},\ldots,z_s^{r_s}).
+\]
+
+\begin{lemma}[Classical complete-intersection strings]\label{lem:ci}
+In characteristic zero, the graded Jordan intervals for multiplication by
+$U=z_1+\cdots+z_s$ on $\CI(r_1,\ldots,r_s)$ all have endpoint sum
+$E=\sum_i(r_i-1)$. On a shifted copy with shift $b$, the endpoint sum
+is $E+2b$.
+\end{lemma}
+
+\begin{proof}
+We recall the lowering-operator proof. First work over $\R$, put
+$e_i=r_i-1$, and make the monomial basis orthogonal with
+\[
+ \|z^{\mathbf v}\|^2
+ =\prod_i\frac{v_i!e_i!}{(e_i-v_i)!}.
+\]
+Define
+\[
+ V(z^{\mathbf v})
+ =\sum_{i:v_i>0}v_i(e_i-v_i+1)z^{\mathbf v-\mathbf e_i}.
+\]
+Then $V=U^*$ and $VU-UV=(E-2j)\operatorname{id}$ on degree $j$.
+If $Vf=0$ and $\deg f=b$, induction gives
+\begin{equation}\label{eq:primitive}
+ VU^qf=q(E-2b-q+1)U^{q-1}f.
+\end{equation}
+Consequently
+\begin{equation}\label{eq:norm}
+ \|U^qf\|^2=q(E-2b-q+1)\|U^{q-1}f\|^2.
+\end{equation}
+A nonzero such $f$ must have $w=E-2b\ge0$: otherwise the case $q=1$
+contradicts positivity. Its iterates through $q=w$ are nonzero, and
+$U^{w+1}f=0$. Thus it generates $[b,E-b]$.
+
+Choose a vector in the least nonzero degree. It is killed by $V$.
+The span of its string is preserved by $U$ and $V$, so its orthogonal
+complement is also preserved by both operators and is graded. Induction
+gives a decomposition entirely into strings $[b,E-b]$.
+
+All multiplication matrices have integer entries. Their ranks over
+$\R$ and $\Q$ agree, and every characteristic-zero field has the same
+ranks. The ranks of all degree-to-degree maps determine the graded Jordan
+multiplicities, so the endpoint assertion transfers to every such field.
+The assertion about shifts is immediate.
+\end{proof}
+
+We will also use the following direct consequence of
+\eqref{eq:primitive}--\eqref{eq:norm}. In a monomial complete intersection
+of socle degree $E$, a homogeneous vector $f$ of degree $i$, killed by the
+lowering operator, satisfies
+\begin{equation}\label{eq:primitive-kernel}
+ U^{E-2i+1}f=0\qquad\text{if }E-2i\ge0.
+\end{equation}
+The vectors used below have rational coefficients, so this identity also
+holds over every characteristic-zero field.
+
+\section{An actual extension and the two possible conflicts}
+
+For the remainder of the three-variable proof, abbreviate
+\[
+ A=A_a,\qquad m=a-2,\qquad D=3a-5,\qquad t=y+z.
+\]
+Set
+\[
+ T=(x^m)A,\qquad
+ C=A/T=\CI(a-2,a,a).
+\]
+These give an exact sequence of graded $k[L]$-modules
+\begin{equation}\label{eq:extension}
+ 0\longrightarrow T\longrightarrow A\longrightarrow C\longrightarrow0.
+\end{equation}
+No splitting of this extension is assumed.
+
+\begin{lemma}\label{lem:T}
+The graded Jordan intervals of $T$ for multiplication by $L$ are
+\begin{equation}\label{eq:Tstrings}
+ [a-2,2a-2],\quad [a-1,2a-3],\quad
+ [a-1,2a-2],\quad [a,2a-3].
+\end{equation}
+The first two have endpoint sum $D+1$ and the last two have endpoint
+sum $D+2$.
+\end{lemma}
+
+\begin{proof}
+The annihilator of $x^m$ gives the actual module description
+\[
+ T\cong x^m\bigl(k[x]/(x^2)\otimes_k
+             k[y,z]/(yz,y^a,z^a)\bigr),
+\]
+where $x^m$ denotes a degree shift and $L$ acts as the sum of the
+factor operators. In the second factor there is an invariant direct sum
+\begin{equation}\label{eq:axes}
+ \frac{k[y,z]}{(yz,y^a,z^a)}
+ \cong k[t]/(t^a)\ \oplus\ yk[t]/(t^{a-1}).
+\end{equation}
+Indeed, the displayed summands have bases
+$1,t,\ldots,t^{a-1}$ and $y,yt,\ldots,yt^{a-2}$.
+For $r\ge1$, $t^r=y^r+z^r$ and $yt^{r-1}=y^r$;
+these vectors form a basis in every degree.
+For $r\ge2$, the two strings of $\CI(2,r)$ are $[0,r]$ and
+$[1,r-1]$: their endpoint sums are $r$ and their Hilbert function is
+$(1,2,\ldots,2,1)$. Tensoring the two strings in \eqref{eq:axes}
+with $k[x]/(x^2)$, and applying the shifts $m$ and $m+1$,
+respectively, now yields \eqref{eq:Tstrings}.
+\end{proof}
+
+Every string of $C$ has endpoint sum $D$. For $i<j$, if $i+j\le D$,
+the maps $L^{j-i}$ on both $T$ and $C$ are injective, and hence so is the
+map on $A$. If $i+j\ge D+2$, both maps are surjective, and so is the
+map on $A$. Only the line $i+j=D+1$ remains. On that line the map on
+$C$ is surjective. The strings of $T$ with endpoint sum $D+1$ do not
+give a cokernel. For a string $[b,e]$ of endpoint sum $D+2$, a cokernel
+on this line requires $i<b$ and $j\le e$; the identity
+$i+j=b+e-1$ forces $i=b-1$ and $j=e$.
+There are therefore exactly two maps requiring further work:
+\begin{equation}\label{eq:two}
+ (i,j,k=j-i)=(a-2,2a-2,a),\qquad
+             (a-1,2a-3,a-2).
+\end{equation}
+
+In each case the $T$-cokernel has dimension one. The $C$-kernel has
+dimension $a-2$. To see the latter, symmetry gives
+$h_C(j)=h_C(i-1)$; direct counting in degrees $a-2$ and $a-1$ gives
+\[
+ h_C(a-2)-h_C(a-3)=h_C(a-1)-h_C(a-2)=a-2.
+\]
+Applying the snake lemma to \eqref{eq:extension} gives
+\begin{equation}\label{eq:delta}
+ \ker(L^k:C_i\to C_j)\xrightarrow{\ \delta\ }
+ \coker(L^k:T_i\to T_j)\longrightarrow
+ \coker(L^k:A_i\to A_j)\longrightarrow0,
+\end{equation}
+where
+\[
+ \delta(f)=[L^k\widetilde f]
+\]
+for any lift $\widetilde f\in A_i$ of $f$. Thus a nonzero value of
+$\delta$ proves surjectivity on $A$ at each of the two maps.
+
+\section{Primitive vectors and the connecting maps}
+
+For $0\le r\le a-1$, define a homogeneous binary polynomial by
+\begin{equation}\label{eq:Pr}
+ P_r(y,z)=\sum_{\ell=0}^r c_\ell y^{r-\ell}z^\ell,
+ \qquad c_0=1,\qquad
+ c_{\ell+1}=-c_\ell
+ \frac{(r-\ell)(a-r+\ell)}{(\ell+1)(a-1-\ell)}.
+\end{equation}
+The denominators are nonzero in characteristic zero.
+
+\begin{lemma}\label{lem:Pr}
+In $\CI(a,a)$, $(V_y+V_z)P_r=0$, and the coefficients of $y^r$ and
+$z^r$ are $1$ and $(-1)^r$, respectively. In $C$, put
+$\mu=a-3$ and $\lambda=2a-2-2r$. Both $P_r$ and
+\begin{equation}\label{eq:coupled}
+ \lambda xP_r-\mu tP_r
+\end{equation}
+are killed by $V_x+V_y+V_z$ whenever the latter expression is used below.
+\end{lemma}
+
+\begin{proof}
+The coefficient of $y^{r-\ell-1}z^\ell$ in
+$(V_y+V_z)P_r$ is
+\[
+ c_\ell(r-\ell)(a-r+\ell)
+ +c_{\ell+1}(\ell+1)(a-1-\ell),
+\]
+which is zero by \eqref{eq:Pr}. Taking the product of the successive
+ratios also gives $c_r=(-1)^r$. The $x$-factor of $C$ has top exponent
+$a-3$, so $V_xx=\mu$. Equation~\eqref{eq:primitive} in the binary
+factor gives $(V_y+V_z)tP_r=\lambda P_r$.
+These two contributions cancel in \eqref{eq:coupled}.
+\end{proof}
+
+\subsection{\texorpdfstring{The map from degree $a-2$ to degree $2a-2$}{The first connecting map}}
+
+Here $k=a$. The source $T_{a-2}$ is generated by $x^m$, and the target
+has basis
+\[
+ u=x^{a-1}y^{a-1},\qquad v=x^{a-1}z^{a-1}.
+\]
+The image of $x^m$ is $a(u+v)$. A functional detecting its
+one-dimensional cokernel is therefore
+\[
+ \ell_1(u)=1,\qquad \ell_1(v)=-1.
+\]
+
+If $a$ is odd, choose $f=P_{a-2}$. It is primitive in $C$ of degree
+$a-2$, so \eqref{eq:primitive-kernel} gives $L^af=0$ in $C$.
+Its pure-axis terms are $y^{a-2}-z^{a-2}$.
+Only these terms can contribute to $u$ or $v$ after multiplication.
+Their coefficients in $L^af\in T$ are $a$ and $-a$, whence
+\begin{equation}\label{eq:delta1odd}
+ \ell_1(L^af)=2a\ne0.
+\end{equation}
+
+If $a$ is even, choose
+\[
+ f=4xP_{a-3}-(a-3)tP_{a-3}.
+\]
+Lemma~\ref{lem:Pr} applies with $\lambda=4$; the same kernel identity
+holds. The terms on the $y$-axis are
+$4xy^{a-3}-(a-3)y^{a-2}$, and the terms on the $z$-axis are their
+negatives with $y$ replaced by $z$. Hence the coefficient of $u$ in
+$L^af$ is
+\[
+ 4\binom a2-(a-3)a=a(a+1),
+\]
+and that of $v$ is its negative. Thus
+\begin{equation}\label{eq:delta1even}
+ \ell_1(L^af)=2a(a+1)\ne0.
+\end{equation}
+Equations~\eqref{eq:delta1odd} and \eqref{eq:delta1even} show that
+the first connecting map in \eqref{eq:two} is surjective.
+
+\subsection{\texorpdfstring{The map from degree $a-1$ to degree $2a-3$}{The second connecting map}}
+
+Now put $k=a-2$. In $T_{2a-3}$ use the ordered basis
+\begin{align*}
+ u&=x^{a-2}y^{a-1},&v&=x^{a-2}z^{a-1},\\
+ p&=x^{a-1}y^{a-2},&q&=x^{a-1}z^{a-2}.
+\end{align*}
+The source basis $x^{a-1},x^{a-2}y,x^{a-2}z$ maps to
+\[
+ p+q,\qquad u+kp,\qquad v+kq,
+\]
+respectively. These vectors are independent, and a functional on the
+cokernel is
+\begin{equation}\label{eq:ell2}
+ \ell_2(u,v,p,q)=(-k,k,1,-1).
+\end{equation}
+
+If $a$ is even, choose $f=P_{a-1}$. It is primitive of degree $a-1$
+in $C$, and \eqref{eq:primitive-kernel} gives $L^{a-2}f=0$ in $C$.
+Its pure-axis terms are $y^{a-1}-z^{a-1}$. The coefficients of
+$(u,v,p,q)$ in $L^{a-2}f$ are $(1,-1,0,0)$, so
+\begin{equation}\label{eq:delta2even}
+ \ell_2(L^{a-2}f)=-2(a-2)\ne0.
+\end{equation}
+
+If $a$ is odd, then $a\ge5$ and we choose
+\[
+ f=2xP_{a-2}-(a-3)tP_{a-2}.
+\]
+Lemma~\ref{lem:Pr} now applies with $\lambda=2$.
+The degree is $a-1$, so again $L^{a-2}f=0$ in $C$.
+The $y$-axis terms are
+$2xy^{a-2}-(a-3)y^{a-1}$; the $z$-axis terms are their negatives.
+The $u$-coefficient of $L^kf$ is $2k-(a-3)=a-1$, and the
+$p$-coefficient is $2$. Consequently
+\begin{equation}\label{eq:delta2odd}
+ \ell_2(L^kf)=2\bigl(-(a-2)(a-1)+2\bigr)=-2a(a-3)\ne0.
+\end{equation}
+Thus the second connecting map is surjective as well.
+
+\begin{proof}[Proof of the SLP assertion in Theorem~\ref{thm:main}]
+Every map except the two in \eqref{eq:two} has already been proved
+injective or surjective by the argument following Lemma~\ref{lem:T}.
+The four calculations above prove that the connecting maps for the
+remaining two cases are nonzero and hence surjective. Exactness of
+\eqref{eq:delta} proves surjectivity on $A$ in those cases. All powers
+therefore have maximal rank.
+\end{proof}
+
+\section{Endpoint control and additional variables}
+
+To prove the remaining assertion of Theorem~\ref{thm:main}, we determine
+enough of the actual graded Jordan intervals. This step uses the SLP
+just proved; a Hilbert-function calculation on its own would not suffice.
+
+\begin{proposition}\label{prop:endpoints}
+The graded Jordan intervals of $A$ have endpoint sums in $\{D,D+1\}$.
+\end{proposition}
+
+\begin{proof}
+Each interval of $C$ has the form $[p,D-p]$.
+At each of $p=a-2$ and $p=a-1$ its multiplicity is $a-2$, by the
+Hilbert-function differences computed in Section~3.
+For each of these two values of $p$, take one such interval and the
+corresponding interval $[p+1,D-p+1]$ of $T$ with endpoint sum $D+2$.
+There is an identity of interval indicator functions
+\begin{equation}\label{eq:rearrange}
+ [p,D-p]+[p+1,D-p+1]
+ =[p,D-p+1]+[p+1,D-p].
+\end{equation}
+The intervals on the right are nonempty for $a\ge4$; the smallest
+intersection occurs at $a=4,p=3$ and is $[4,4]$.
+
+After the two replacements, all untouched $C$ intervals have endpoint
+sum $D$, and all other intervals have endpoint sum $D+1$.
+They form a nested family by Lemma~\ref{lem:nested}, and their Hilbert
+function is that of $A$, by \eqref{eq:extension} and
+\eqref{eq:rearrange}. The actual intervals of $A$ are also nested,
+because the SLP has been proved. Uniqueness in Lemma~\ref{lem:nested}
+therefore identifies the actual interval family with the constructed
+family and proves the assertion.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:extra}]
+Put
+\[
+ B=k[x_4,\ldots,x_n]/(x_4^{d_4},\ldots,x_n^{d_n}),
+ \qquad E=\sum_{i=4}^n(d_i-1).
+\]
+The algebra in the corollary is $A\otimes_k B$. Tensor each actual
+string $[b,e]$ of $A$ with $B$. As a module for the sum of the
+operators this is a shifted monomial complete intersection; hence
+Lemma~\ref{lem:ci} decomposes it into strings with endpoint sum
+$b+e+E$. Proposition~\ref{prop:endpoints} says that all final endpoint
+sums belong to $\{D+E,D+E+1\}$. They are therefore nested by
+Lemma~\ref{lem:nested}, which proves the SLP.
+\end{proof}
+
+\begin{remark}\label{rem:nonsymmetric}
+The socle degree of $A$ is $D$. Its Hilbert function is not symmetric:
+$C$ is symmetric about $D/2$, whereas
+\[
+ \dim T_{a-2}=1,\qquad \dim T_{2a-3}=4.
+\]
+Since $D-(a-2)=2a-3$, this gives
+\[
+ h_A(a-2)-h_A(2a-3)=-3.
+\]
+Thus the symmetric-Hilbert-series results of
+\cite[Proposition~4.2 and Theorem~4.3]{CJK2026} do not directly apply.
+Endpoint control, rather than symmetry, is what allows the tensor
+corollary here.
+\end{remark}
+
+\section{Reproducibility and remaining scope}
+
+The argument is independent of computation. Ancillary files provide
+finite checks in the original monomial coordinates. For $a=4,\ldots,20$,
+the code constructs the primitive vector for each of the two critical
+maps, checks its vanishing in $C$, and checks its nonzero connecting
+value in $A$, giving $34$ certificates. It also constructs every positive
+power map for
+\[
+ (n,a)=(3,4),(3,5),(3,6),(4,4),(4,5),
+\]
+and computes their exact ranks over $\Q$ using rational Gaussian
+elimination. These are $334$ degree-to-degree maps. Graded Jordan
+intervals are recovered from these ranks by inclusion-exclusion.
+The checks are supplied to facilitate reproduction and attempts to
+falsify the formulas, and are not used to infer the universal theorem.
+
+The result proves the second positive infinite family of
+\cite[Conjecture~1]{GLN2022}, in the numbering of
+arXiv:2006.14453v4, and the preceding expectation in arbitrary dimension.
+It leaves the exclusion of other exponent patterns in that full
+classification untouched. It also does not give a positive-characteristic
+classification. The use of characteristic zero is explicit in both the
+complete-intersection strings and the nonvanishing calculations.
+
+\section*{AI assistance disclosure}
+This manuscript was developed with substantial assistance from OpenAI
+Codex for mathematical derivations, drafting, and computational checks.
+The AI system is not an author. This disclosure does not constitute
+external mathematical review or certification.
+
+\bibliographystyle{amsplain}
+\bibliography{references}
+\end{document}

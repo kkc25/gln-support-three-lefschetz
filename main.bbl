@@ -1,0 +1,26 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{1}
+
+\bibitem{CJK2026}
+Bek Chase and Filip Jonsson~Kling, \emph{The strong {L}efschetz property for
+  some monomial almost complete intersections}, Collectanea Mathematica,
+  published online, 2026, Theorem numbering follows arXiv:2507.18516v1.
+
+\bibitem{GLN2022}
+Oleksandra Gasanova, Samuel Lundqvist, and Lisa Nicklasson, \emph{On
+  decomposing monomial algebras with the {L}efschetz properties}, Journal of
+  Pure and Applied Algebra \textbf{226} (2022), no.~6, 106968, Conjecture
+  numbering follows arXiv:2006.14453v4, 29 November 2021.
+
+\bibitem{Stanley1980}
+Richard~P. Stanley, \emph{Weyl groups, the hard {L}efschetz theorem, and the
+  {S}perner property}, SIAM Journal on Algebraic Discrete Methods \textbf{1}
+  (1980), no.~2, 168--184.
+
+\end{thebibliography}

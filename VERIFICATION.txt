@@ -1,0 +1,18 @@
+Exact auxiliary checks for the GLN support-three SLP family
+
+Requires Python 3 and its standard library only. Run in this directory:
+  python verify.py --output replay.json
+Compare the parsed JSON result with verification.json.
+
+The script constructs the original standard-monomial multiplication
+matrices and uses exact rational arithmetic. It verifies both actual
+connecting-map certificates for a=4,...,20 (34 cases) and every positive-
+power map for (n,a)=(3,4),(3,5),(3,6),(4,4),(4,5) (334 maps).
+
+This is a GLN-only extract of the research verifier. The primitive,
+original-coordinate matrix, rank and Jordan-recovery routines are retained
+unchanged. An unrelated internal characteristic-7 example has been omitted.
+The GLN-only results were replayed and compared with the original record.
+
+The universal theorem rests on the proof in the manuscript, not these
+finite checks. No finite-prime ranks are used to infer rational ranks.
